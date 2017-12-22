@@ -1,0 +1,14 @@
+.work-page .taglist {
+    margin-bottom: 45px;
+}
+
+.tag {
+    display: inline-block;
+    white-space: nowrap;
+    color: #666;
+    line-height: 26px;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    font-size: 14px;
+    background-color: rgba(203,209,211,.3);
+}

@@ -1,0 +1,39 @@
+.main-menu {
+    text-transform: uppercase;
+}
+
+.main-menu__item {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
+.main-menu__item a {
+    color: #000;
+    position: relative;
+}
+
+.main-menu__item.is-active a:before {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: #cf3f02;
+}
+
+.sidebar .main-menu {
+    margin-top: 122px;
+    padding-left: 37px;
+}
+
+.sidebar .main-menu__item {
+    vertical-align: middle;
+    height: 44px;
+    text-transform: uppercase;
+    display: block;
+}
+
+.sidebar .main-menu__item a {
+    color: #fff;
+}
