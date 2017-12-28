@@ -1,8 +1,8 @@
 const paths = [
-    { url: "/work", text: "работаю" },
-    { url: "https://www.instagram.com/nataliadushkina/", text: "рисую" },
-    { url: "/read", text: "читаю" },
-    { url: "/cook", text: "готовлю" }
+    { url: "work", text: "работаю", type: "rel" },
+    { url: "https://www.instagram.com/nataliadushkina/", text: "рисую", type: "abs" },
+    { url: "read", text: "читаю", type: "rel" },
+    { url: "cook", text: "готовлю", type: "abs" }
 ];
 
 export default paths;

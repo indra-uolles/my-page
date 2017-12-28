@@ -6,9 +6,16 @@ class MainMenu extends Component {
   render() {
     const menuItems = this.props.mainMenuItems || [];
     const menuItemsHTML = menuItems.map((item, index) => {
-        return (
-            <li className="main-menu__item" key={index}><a href={item.url}>{item.text}</a></li>
-        );
+        //пока так
+        if (item.type == "rel") {
+            return (
+                <li className="main-menu__item" key={index}><a href={`${process.env.PUBLIC_URL}/#/${item.url}`}>{item.text}</a></li>
+            );
+        } else {
+            return (
+                <li className="main-menu__item" key={index}><a href={item.url}>{item.text}</a></li>
+            );
+        }
     });
 
     return (
