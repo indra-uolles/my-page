@@ -1,0 +1,51 @@
+.main-menu {
+    text-transform: uppercase;
+}
+
+.main-menu__item {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
+.main-menu__item a {
+    color: #000;
+    position: relative;
+}
+
+.main-menu__item a.active {
+    color: #fff;
+}
+
+.main-menu__item a:hover, .main-menu__item a:visited, .main-menu__item a.active {
+    text-decoration: none;
+}
+
+.main-menu__item a:hover {
+    color: #ddd;
+}
+
+.sidebar .main-menu__item a.active:before, .sidebar .main-menu__item a:hover:before {
+    position: absolute;
+    top: 2px;
+    left: -10px;
+    content: "";
+    height: 15px;
+    width: 2px;
+    background: #fff;
+}
+
+.sidebar .main-menu {
+    margin-top: 122px;
+    padding-left: 37px;
+}
+
+.sidebar .main-menu__item {
+    vertical-align: middle;
+    height: 44px;
+    text-transform: uppercase;
+    display: block;
+}
+
+.sidebar .main-menu__item a {
+    color: #fff;
+}
