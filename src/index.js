@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import { Switch } from 'react-router';
 import {
     HashRouter as Router,
     Route
@@ -15,6 +16,10 @@ import PATHS from './lib/paths';
 
 import PageHome from './components/pages/PageHome';
 import PageWork from './components/pages/PageWork';
+import PageRead from './components/pages/PageRead';
+import PageCook from './components/pages/PageCook';
+import PageNotFound from './components/pages/PageNotFound';
+
 import Hero from './components/blocks/Hero';
 import Footer from './components/blocks/Footer';
 import MainMenu from './components/blocks/MainMenu';
@@ -63,19 +68,41 @@ class Main extends React.Component {
                 <div>
                     <Sidebar sidebar={sidebarContent} open={this.state.sidebarOpen} sidebarClassName="sidebar"><b></b></Sidebar>
                     <div className="page-container">
-                        <Route exact path='/' render={() =>
-                            <Hero type='extended' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
-                        }/>
-                        <Route path='/work' render={() =>
-                            <Hero type='plain' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
-                        }/>
-                        <article>
+                        <Switch>
                             <Route exact path='/' render={() =>
-                                <PageHome />
+                                <Hero type='extended' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
                             }/>
-                            <Route path='/work' render={() =>
-                                <PageWork />
+                            <Route exact path='/work' render={() =>
+                                <Hero type='plain' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
                             }/>
+                            <Route exact path='/cook' render={() =>
+                                <Hero type='plain' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
+                            }/>
+                            <Route exact path='/read' render={() =>
+                                <Hero type='plain' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
+                            }/>
+                            <Route render={() =>
+                                <Hero type='plain' mainMenuItems={PATHS} langSwitchItems={langSwitchItems} onSidebarTrigger={this.onSidebarTrigger.bind(this)}/>
+                            }/>
+                        </Switch>
+                        <article>
+                            <Switch>
+                                <Route exact path='/' render={() =>
+                                    <PageHome />
+                                }/>
+                                <Route exact path='/work' render={() =>
+                                    <PageWork />
+                                }/>
+                                <Route exact path='/cook' render={() =>
+                                    <PageCook />
+                                }/>
+                                <Route exact path='/read' render={() =>
+                                    <PageRead />
+                                }/>
+                                <Route render={() =>
+                                    <PageNotFound />
+                                }/>
+                            </Switch>
                         </article>
                     </div>
                     <Footer/>
