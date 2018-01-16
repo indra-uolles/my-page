@@ -13,16 +13,15 @@
 }
 
 .main-menu__item a.active {
-    font-weight: bold;
+    color: #fff;
 }
 
-.sidebar .main-menu__item a.active {
-    font-weight: normal;
+.main-menu__item a:hover, .main-menu__item a:visited, .main-menu__item a.active {
     text-decoration: none;
 }
 
-.sidebar .main-menu__item a:hover, .sidebar .main-menu__item a:visited {
-    text-decoration: none;
+.main-menu__item a:hover {
+    color: #ddd;
 }
 
 .sidebar .main-menu__item a.active:before, .sidebar .main-menu__item a:hover:before {
