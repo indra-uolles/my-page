@@ -3,14 +3,12 @@ import { render } from 'react-dom';
 
 import {
     HashRouter as Router,
-    Route,
-    Link
+    Route
 } from 'react-router-dom'
 
 import './reset.css';
 import './index.css';
 
-// Components
 import IconClose from 'react-icons/lib/md/close';
 import Sidebar from 'react-sidebar';
 import PATHS from './lib/paths';

@@ -12,14 +12,27 @@
     position: relative;
 }
 
-.main-menu__item.is-active a:before {
+.main-menu__item a.active {
+    font-weight: bold;
+}
+
+.sidebar .main-menu__item a.active {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.sidebar .main-menu__item a:hover, .sidebar .main-menu__item a:visited {
+    text-decoration: none;
+}
+
+.sidebar .main-menu__item a.active:before, .sidebar .main-menu__item a:hover:before {
     position: absolute;
-    top: calc(100% - 1px);
-    left: 0;
+    top: 2px;
+    left: -10px;
     content: "";
-    height: 1px;
-    width: 100%;
-    background: #cf3f02;
+    height: 15px;
+    width: 2px;
+    background: #fff;
 }
 
 .sidebar .main-menu {
