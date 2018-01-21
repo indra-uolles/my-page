@@ -13,14 +13,14 @@ const contactsForm = (props) => {
                 <div className="col-md-3 form-control-wrapper">
                     <div className="form-group required">
                         <label className="control-label" htmlFor="nickname">Имя / Никнейм</label>
-                        <input type="text" id="nickname" className="form-control" name="nickname" placeholder="Имя" autocomplete="off" value={props.nickname} onChange={props.handleUserInput}/>
+                        <input type="text" id="nickname" className="form-control" name="nickname" placeholder="Имя" autoComplete="off" value={props.nickname} onChange={props.handleUserInput}/>
                         <div className="help-block">{props.formErrors['nickname']}</div>
                     </div>
                 </div>
                 <div className="col-md-9 idea-form__email form-control-wrapper">
                     <div className="form-group">
                         <label className="control-label" htmlFor="email">E-mail</label>
-                        <input type="email" id="email" className="form-control" name="email" placeholder="primer@email.ru" autocomplete="off" value={props.email} onChange={props.handleUserInput}/>
+                        <input type="email" id="email" className="form-control" name="email" placeholder="primer@email.ru" autoComplete="off" value={props.email} onChange={props.handleUserInput}/>
                         <div className="help-block">{props.formErrors['email']}</div>
                     </div>
                 </div>
@@ -36,6 +36,7 @@ const contactsForm = (props) => {
             </div>
             <div className="row">
                 <div className="col-md-12">
+                    <input type="text" name="_gotcha" style={{display: 'none'}} />
                     <button type="submit" className="btn btn-default">Отправить</button>
                 </div>
             </div>
@@ -71,10 +72,15 @@ export default class Contacts extends Component {
     handleUserInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({[name]: value});
+        let formErrors = this.state.formErrors;
+        formErrors[name] = '';
+        this.setState({
+            [name]: value,
+            formErrors: formErrors
+        });
     }
 
-    validateForm(callback) {
+    validateForm = (callback) => {
         let fieldValidationErrors = this.state.formErrors;
 
         let nicknameValid = this.state.nickname.length >= 1;
@@ -96,16 +102,56 @@ export default class Contacts extends Component {
             formValid: formValid
         }, callback);
     }
-    onSubmit(e) {
+
+    // formDataToJson = (formData) => {
+    //     const entries = formData.entries();
+    //     const dataObj = Array.from(entries).reduce( (data, [key, value]) => {
+    //         data[key] = value;
+    //         if (key === 'email') {
+    //           data._replyTo = value;
+    //         }
+    //         return data;
+    //     }, {});
+    //     return JSON.stringify(dataObj);
+    // }
+
+    onSubmit = (e) => {
         e.preventDefault();
+        const formData = JSON.stringify({
+            nickname: this.state.nickname,
+            email: this.state.email,
+            message: this.state.message,
+            _replyTo: this.state.email
+        });
+
         this.validateForm(() => {
+            let _this = this;
             if (!this.state.formValid) {
                 return;
             } else {
-                this.setState({
-                    sent: true
+                fetch('https://formspree.io/smirnovanatalia2008@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                }).then(function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +  response.status);
+                        return;
+                    }
+
+                    response.json().then(function(data) {
+                        if (data.success === 'email sent') {
+                            _this.setState({
+                                sent: true
+                            });
+                        }
+                    });
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
                 });
-                //this.refs.formToSubmit.submit();
             }
         });
     }
