@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
+import Captcha from 'react-captcha';
 
 import TelegramLink from '../TelegramLink';
 import ok from './ok.png';
@@ -37,6 +38,12 @@ const contactsForm = (props) => {
             <div className="row">
                 <div className="col-md-12">
                     <input type="text" name="_gotcha" style={{display: 'none'}} />
+                    <Captcha
+                        sitekey = '6LdZzkEUAAAAAFkZR2LQhuw1pwMoEVP_mPv3-Q57'
+                        lang = 'ru'
+                        theme = 'light'
+                        type = 'image'
+                        callback = {(value) => props.onCaptchaChange(value)}/>
                     <button type="submit" className="btn btn-default">Отправить</button>
                 </div>
             </div>
@@ -65,7 +72,9 @@ export default class Contacts extends Component {
             emailValid: false,
             messageValid: false,
             formValid: false,
-            sent: false
+            sent: false,
+            captcha: '',
+            captchaValid: false
         }
     }
 
@@ -78,6 +87,37 @@ export default class Contacts extends Component {
             [name]: value,
             formErrors: formErrors
         });
+    }
+
+    //https://stackoverflow.com/questions/26964929/recaptcha-issues-no-access-control-allow-origin-header-is-present-on-the-req
+    validateCaptcha = (value) => {
+        let _this = this;
+        _this.setState({
+            captcha: value
+        });
+        // const captchaData = JSON.stringify({
+        //     secret: '6LdZzkEUAAAAAIR-vFLZ3a8OQc8Ixi03O1diG8dF',
+        //     response: value
+        // });
+        // fetch('https://www.google.com/recaptcha/api/siteverify', {
+        //     method: 'POST',
+        //     body: captchaData,
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //        'Access-Control-Allow-Origin'
+        //     }
+        // }).then(function(response) {
+        //     if (response.status !== 200) {
+        //         console.log('Looks like there was a problem. Status Code: ' +  response.status);
+        //         return;
+        //     }
+
+        //     response.json().then(function(data) {
+        //         _this.setState({
+        //             captchaValid: data.success === true ? true : false
+        //         });
+        //     });
+        // })
     }
 
     validateForm = (callback) => {
@@ -103,20 +143,11 @@ export default class Contacts extends Component {
         }, callback);
     }
 
-    // formDataToJson = (formData) => {
-    //     const entries = formData.entries();
-    //     const dataObj = Array.from(entries).reduce( (data, [key, value]) => {
-    //         data[key] = value;
-    //         if (key === 'email') {
-    //           data._replyTo = value;
-    //         }
-    //         return data;
-    //     }, {});
-    //     return JSON.stringify(dataObj);
-    // }
+
 
     onSubmit = (e) => {
         e.preventDefault();
+
         const formData = JSON.stringify({
             nickname: this.state.nickname,
             email: this.state.email,
@@ -169,7 +200,8 @@ export default class Contacts extends Component {
                     email: this.state.email,
                     message: this.state.message,
                     onSubmit: this.onSubmit.bind(this),
-                    handleUserInput: this.handleUserInput.bind(this)
+                    handleUserInput: this.handleUserInput.bind(this),
+                    onCaptchaChange: this.validateCaptcha
                 }) }
             </section>
         );
