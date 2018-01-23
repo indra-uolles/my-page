@@ -11,7 +11,8 @@ class PageWork extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projects: []
+            projects: [],
+            workexp: []
         }
     }
 
@@ -19,33 +20,13 @@ class PageWork extends Component {
         fetch('/projects')
           .then(res => res.json())
           .then(projects => this.setState({ projects: projects }));
+        fetch('/workexp')
+          .then(res => res.json())
+          .then(workexp => this.setState({ workexp: workexp }));
       }
 
     render() {
         const tags = ['Git','Gulp','i-bem','jQuery','Bootstrap','Python','Ruby','Slim','CoffeeScript','Sass','CSS3','Ruby on Rails','JavaScript'];
-        const workExp = [
-            {
-                dates: "Январь 2015 — по настоящее время",
-                timeinterval: "2 года 5 месяцев",
-                place: "Идинайди",
-                placedetails: "Москва, www.idinaidi.ru",
-                position: "фронтэнд-разработчик",
-                duties: "<p>Участие в разработке веб-сервисов idinaidi.ru (недвижимость), komesto.ru (коммерческая недвижимость).</p><p>Основной стек: Ruby on Rails, SASS, CoffeeScript, клиентский фреймворк Pieces от Evil Martians, jQuery. Также работала с менеджером очередей Sidekiq и поисковым движком Elasticsearch.</p>"
-            },
-            {
-                dates: "Январь 2015 — по настоящее время",
-                timeinterval: "2 года 5 месяцев",
-                place: "Идинайди!",
-                placedetails: "Москва, www.idinaidi.ru",
-                position: "фронтэнд-разработчик",
-                duties: "<p>Участие в разработке веб-сервисов idinaidi.ru (недвижимость), komesto.ru (коммерческая недвижимость).</p><p>Основной стек: Ruby on Rails, SASS, CoffeeScript, клиентский фреймворк Pieces от Evil Martians, jQuery. Также работала с менеджером очередей Sidekiq и поисковым движком Elasticsearch.</p>"
-            }
-        ];
-        const workExpHTML = workExp.map((item, index) => {
-            return (
-                <WorkExp key={index} {...item} />
-            );
-        });
 
         return (
             <div className="work-page">
@@ -62,7 +43,9 @@ class PageWork extends Component {
                     <h2>Опыт работы</h2>
                     <div className="achievements__content">
                         <p className="achievements__note">Краткую версию резюме можно скачать <a href="#">отсюда.</a></p>
-                        {workExpHTML}
+                        {this.state.workexp.map((item, index) =>
+                            <WorkExp key={index} {...item} />
+                        )}
                         <Pagination/>
                     </div>
                 </section>
