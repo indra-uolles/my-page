@@ -90,34 +90,33 @@ export default class Contacts extends Component {
     }
 
     //https://stackoverflow.com/questions/26964929/recaptcha-issues-no-access-control-allow-origin-header-is-present-on-the-req
-    validateCaptcha = (value) => {
+    // validateCaptcha = (value) => {
+    //     let _this = this;
+    //     _this.setState({
+    //         captcha: value
+    //     });
+    //     // const captchaData = JSON.stringify({
+    //     //     secret: '6LdZzkEUAAAAAIR-vFLZ3a8OQc8Ixi03O1diG8dF',
+    //     //     response: value
+    //     // });
+    // }
+
+    onCaptchaChange = (value) => {
         let _this = this;
         _this.setState({
             captcha: value
         });
-        // const captchaData = JSON.stringify({
-        //     secret: '6LdZzkEUAAAAAIR-vFLZ3a8OQc8Ixi03O1diG8dF',
-        //     response: value
-        // });
-        // fetch('https://www.google.com/recaptcha/api/siteverify', {
-        //     method: 'POST',
-        //     body: captchaData,
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //        'Access-Control-Allow-Origin'
-        //     }
-        // }).then(function(response) {
-        //     if (response.status !== 200) {
-        //         console.log('Looks like there was a problem. Status Code: ' +  response.status);
-        //         return;
-        //     }
-
-        //     response.json().then(function(data) {
-        //         _this.setState({
-        //             captchaValid: data.success === true ? true : false
-        //         });
-        //     });
-        // })
+        fetch('/captchacheck?value=' + value).then(function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +  response.status);
+                return;
+            }
+            response.json().then(function(data) {
+                _this.setState({
+                    captchaValid: data.success === true ? true : false
+                });
+            });
+        });
     }
 
     validateForm = (callback) => {
@@ -142,8 +141,6 @@ export default class Contacts extends Component {
             formValid: formValid
         }, callback);
     }
-
-
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -201,7 +198,7 @@ export default class Contacts extends Component {
                     message: this.state.message,
                     onSubmit: this.onSubmit.bind(this),
                     handleUserInput: this.handleUserInput.bind(this),
-                    onCaptchaChange: this.validateCaptcha
+                    onCaptchaChange: this.onCaptchaChange.bind(this)
                 }) }
             </section>
         );

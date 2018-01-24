@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var projects = require('./routes/projects');
 var workexp = require('./routes/workexp');
+var captchacheck = require('./routes/captchacheck');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/projects', projects);
 app.use('/workexp', workexp);
+app.use('/captchacheck', captchacheck);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
