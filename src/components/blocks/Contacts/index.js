@@ -89,24 +89,19 @@ export default class Contacts extends Component {
         });
     }
 
-    //https://stackoverflow.com/questions/26964929/recaptcha-issues-no-access-control-allow-origin-header-is-present-on-the-req
-    // validateCaptcha = (value) => {
-    //     let _this = this;
-    //     _this.setState({
-    //         captcha: value
-    //     });
-    //     // const captchaData = JSON.stringify({
-    //     //     secret: '6LdZzkEUAAAAAIR-vFLZ3a8OQc8Ixi03O1diG8dF',
-    //     //     response: value
-    //     // });
-    // }
-
     onCaptchaChange = (value) => {
         let _this = this;
         _this.setState({
             captcha: value
         });
-        fetch('/captchacheck?value=' + value).then(function(response) {
+        fetch('/captchacheck', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ captcha: value })
+        }).then(function(response) {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +  response.status);
                 return;
@@ -178,7 +173,7 @@ export default class Contacts extends Component {
                     });
                 })
                 .catch(function(err) {
-                    console.log('Fetch Error :-S', err);
+                    console.log('Fetch Error', err);
                 });
             }
         });
