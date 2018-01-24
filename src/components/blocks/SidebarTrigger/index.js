@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
+import React, { Component } from 'react';
 import './style.css';
 
 import IconMenu from 'react-icons/lib/md/menu';
@@ -9,7 +8,7 @@ class SidebarTrigger extends Component {
 
         return (
             <div className="icon-hamburger" onClick={this.props.onSidebarTrigger}>
-                <IconMenu style={{ width: "40px", height: "40px", backgroundColor: "#fff" }} />
+                <IconMenu style={{ width: '40px', height: '40px', backgroundColor: '#fff' }} />
             </div>
         );
     }

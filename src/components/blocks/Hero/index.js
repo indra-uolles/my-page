@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 
 import './style.css';
@@ -16,18 +16,17 @@ class Hero extends Component {
 
         this.state = {
             isSideBarOpen: false
-        }
+        };
     }
 
     render() {
         const mainMenuItems = this.props.mainMenuItems || [];
         const langSwitchItems = this.props.langSwitchItems || [];
-        var bgStyle = {
+        const bgStyle = {
             backgroundImage: 'url(' + bgImgUrl + ')'
-        }
-
-        let type = this.props.type || 'plain';
-        let dynCardClass = classnames({
+        };
+        const type = this.props.type || 'plain';
+        const dynCardClass = classnames({
             'hero': true,
             'is-plain': type === 'plain',
             'is-extended': type === 'extended'

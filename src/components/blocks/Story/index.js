@@ -1,10 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import './style.css';
 
 class Story extends Component {
-  render() {
+    render() {
 
-    return (
+        return (
         <div className="story clearfix">
             <div className="story__image">
                 <a href={this.props.link} target="_blank">
@@ -24,8 +24,8 @@ class Story extends Component {
                 <div className="story__desc"><a href={this.props.link} target="_blank">{this.props.desc}</a></div>
             </div>
         </div>
-    );
-  }
+        );
+    }
 }
 
 export default Story;

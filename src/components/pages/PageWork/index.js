@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
+import React, { Component } from 'react';
 import './style.css';
 
 import Story from '../../blocks/Story';
@@ -13,7 +12,7 @@ class PageWork extends Component {
         this.state = {
             projects: [],
             workexp: []
-        }
+        };
     }
 
     componentDidMount() {
@@ -23,7 +22,7 @@ class PageWork extends Component {
         fetch('/workexp')
           .then(res => res.json())
           .then(workexp => this.setState({ workexp: workexp }));
-      }
+    }
 
     render() {
         const tags = ['Git','Gulp','i-bem','jQuery','Bootstrap','Python','Ruby','Slim','CoffeeScript','Sass','CSS3','Ruby on Rails','JavaScript'];

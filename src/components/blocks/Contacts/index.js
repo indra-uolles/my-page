@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import Captcha from 'react-captcha';
 
@@ -6,8 +6,7 @@ import TelegramLink from '../TelegramLink';
 import ok from './ok.png';
 import './style.css';
 
-
-const contactsForm = (props) => {
+const ContactsForm = (props) => {
     return (
         <form ref="formToSubmit" action="https://formspree.io/smirnovanatalia2008@gmail.com" method="post" className="contacts-form form" onSubmit={props.onSubmit}>
             <div className="row">
@@ -49,16 +48,16 @@ const contactsForm = (props) => {
             </div>
         </form>
     );
-}
+};
 
-const sentMessage = () => {
+const SentMessage = () => {
     return (
         <div className="sentmessage">
             <img src={ok} alt="Хорошо"/>
             <p>Ваше сообщение отправлено</p>
         </div>
     );
-}
+};
 
 export default class Contacts extends Component {
     constructor(props) {
@@ -75,7 +74,7 @@ export default class Contacts extends Component {
             sent: false,
             captcha: '',
             captchaValid: false
-        }
+        };
     }
 
     handleUserInput = (e) => {
@@ -156,7 +155,7 @@ export default class Contacts extends Component {
                     method: 'POST',
                     body: formData,
                     headers: {
-                      'Content-Type': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 }).then(function(response) {
                     if (response.status !== 200) {
@@ -186,7 +185,7 @@ export default class Contacts extends Component {
             <section className={classnames('contacts', className)} {...props }>
                 <h2>Контакты</h2>
                 <p>Свяжитесь со мной через <TelegramLink link="https://telegram.me/natalia_dushkina"/> или напишите:</p>
-                { this.state.sent ? sentMessage() : contactsForm({
+                { this.state.sent ? SentMessage() : ContactsForm({
                     formErrors: this.state.formErrors,
                     nickname: this.state.nickname,
                     email: this.state.email,

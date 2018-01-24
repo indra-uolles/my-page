@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import byvaet from './byvaet.jpg';
 import './style.css';
 
