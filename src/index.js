@@ -5,7 +5,7 @@ import { Switch } from 'react-router';
 import {
     HashRouter as Router,
     Route
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 import './reset.css';
 import './index.css';
@@ -30,7 +30,7 @@ class Main extends React.Component {
 
         this.state = {
             sidebarOpen: false
-        }
+        };
 
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     }
@@ -51,14 +51,14 @@ class Main extends React.Component {
 
     render() {
         const langSwitchItems = [
-          { url: "#", text: "ru", isActive: true },
-          { url: "#", text: "en" }
+          { url: '#', text: 'ru', isActive: true },
+          { url: '#', text: 'en' }
         ];
 
         var sidebarContent =
             <div>
                 <div className="sidebar__close" onClick={ this.onSidebarClose.bind(this) }>
-                    <IconClose style={{ width: "40px", height: "40px", color: "#fff" }} />
+                    <IconClose style={{ width: '40px', height: '40px', color: '#fff' }} />
                 </div>
                 <MainMenu mainMenuItems={PATHS}/>
             </div>;

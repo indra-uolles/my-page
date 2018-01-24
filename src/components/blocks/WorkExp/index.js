@@ -1,13 +1,13 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import './style.css';
 
 class WorkExp extends Component {
 
-    _getDuties(str) {
+    _getDuties = (str) => {
         return <div dangerouslySetInnerHTML={this._createMarkup(str)} />;
     }
 
-    _createMarkup(str) {
+    _createMarkup = (str) => {
         return { __html: str };
     }
 
@@ -28,7 +28,7 @@ class WorkExp extends Component {
                 </div>
             </div>
         );
-  }
+    }
 }
 
 export default WorkExp;

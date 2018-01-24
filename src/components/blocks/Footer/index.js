@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
+import React from 'react';
 import './style.css';
 
 export default function Footer() {
@@ -8,4 +7,4 @@ export default function Footer() {
             <a href='#'>©&nbsp;2017 Душкина Наталья</a>
         </footer>
     );
-};
+}

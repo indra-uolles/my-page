@@ -1,27 +1,25 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import './style.css';
 
 export default class Contacts extends Component {
     render() {
-        const { className, ...props } = this.props;
-        let size = this.props.size || 'medium';
-        let dynCardClass = classnames({
+        const size = this.props.size || 'medium';
+        const dynCardClass = classnames({
             'card': true,
             'card--large': size === 'large',
             'card--medium': size === 'medium',
             'card--small': size === 'small',
             'is-last': !!this.props.last
         });
-        let dynImgClass = classnames({
+        const dynImgClass = classnames({
             'card__img': true,
             'is-empty': this.props.img == null
         });
-        let imgUrl = this.props.img ? this.props.img : '';
-        var bgStyle = {
+        const imgUrl = this.props.img ? this.props.img : '';
+        const bgStyle = {
             backgroundImage: 'url(' + imgUrl + ')'
-        }
-
+        };
 
         return (
             <div className={dynCardClass}>
