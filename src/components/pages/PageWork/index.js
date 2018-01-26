@@ -16,10 +16,10 @@ class PageWork extends Component {
     }
 
     componentDidMount() {
-        fetch('/projects')
+        fetch('https://my-firebase-server.firebaseapp.com/projects')
           .then(res => res.json())
           .then(projects => this.setState({ projects: projects }));
-        fetch('/workexp')
+        fetch('https://my-firebase-server.firebaseapp.com/workexp')
           .then(res => res.json())
           .then(workexp => this.setState({ workexp: workexp }));
     }
