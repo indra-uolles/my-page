@@ -43,6 +43,7 @@ const ContactsForm = (props) => {
                         theme = 'light'
                         type = 'image'
                         callback = {(value) => props.onCaptchaChange(value)}/>
+                    <div className="help-block">{props.captchaMessage}</div>
                     <button type="submit" className="btn btn-default">Отправить</button>
                 </div>
             </div>
@@ -73,7 +74,7 @@ export default class Contacts extends Component {
             formValid: false,
             sent: false,
             captcha: '',
-            captchaValid: false
+            captchaState: 'initial'
         };
     }
 
@@ -91,7 +92,8 @@ export default class Contacts extends Component {
     onCaptchaChange = (value) => {
         let _this = this;
         _this.setState({
-            captcha: value
+            captcha: value,
+            captchaState: 'checking'
         });
         fetch('https://my-firebase-server.firebaseapp.com/captchacheck', {
             method: 'POST',
@@ -106,8 +108,8 @@ export default class Contacts extends Component {
                 return;
             }
             response.json().then(function(data) {
-                _this.setState({
-                    captchaValid: data.success === true ? true : false
+                data.success === true && _this.setState({
+                    captchaState: 'checked'
                 });
             });
         });
@@ -139,6 +141,12 @@ export default class Contacts extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
+        if (this.state.captchaState == 'initial') {
+            this.setState({
+                captchaState: 'submitinitial'
+            });
+        }
+
         const formData = JSON.stringify({
             nickname: this.state.nickname,
             email: this.state.email,
@@ -148,7 +156,7 @@ export default class Contacts extends Component {
 
         this.validateForm(() => {
             let _this = this;
-            if (!this.state.formValid) {
+            if (!this.state.formValid || this.state.captchaState !== 'checked') {
                 return;
             } else {
                 fetch('https://formspree.io/smirnovanatalia2008@gmail.com', {
@@ -180,6 +188,12 @@ export default class Contacts extends Component {
 
     render() {
         const { className, ...props } = this.props;
+        let captchaMessage = '';
+        if (this.state.captchaState == 'checking') {
+            captchaMessage = 'капча проверяется...';
+        } else if (this.state.captchaState == 'submitinitial') {
+            captchaMessage = 'докажите, что не робот';
+        }
 
         return (
             <section className={classnames('contacts', className)} {...props }>
@@ -192,7 +206,8 @@ export default class Contacts extends Component {
                     message: this.state.message,
                     onSubmit: this.onSubmit.bind(this),
                     handleUserInput: this.handleUserInput.bind(this),
-                    onCaptchaChange: this.onCaptchaChange.bind(this)
+                    onCaptchaChange: this.onCaptchaChange.bind(this),
+                    captchaMessage: captchaMessage
                 }) }
             </section>
         );
