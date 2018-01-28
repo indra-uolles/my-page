@@ -1,5 +1,9 @@
 # my-page
 
-для запуска проекта npm i в корне проекта и в react-backend.
-затем в react-backend PORT=3001 node bin/www,
-а в корне проекта npm start
+Личная страничка, для тренировки создаваемая с помощью React
+
+Результат можно увидеть тут:
+https://indra-uolles.github.io/my-page/#/
+
+Серверный код тут:
+https://github.com/indra-uolles/my-firebase-server
