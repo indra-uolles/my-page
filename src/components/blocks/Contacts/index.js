@@ -93,7 +93,7 @@ export default class Contacts extends Component {
         _this.setState({
             captcha: value
         });
-        fetch('/captchacheck', {
+        fetch('https://my-firebase-server.firebaseapp.com/captchacheck', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
