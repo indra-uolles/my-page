@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
 class PageCook extends Component {
-
     render() {
-
-        return (
-            <div>
-                Готовлю
-            </div>
-        );
+        return <div>Готовлю</div>;
     }
 }
 

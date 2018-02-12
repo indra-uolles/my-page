@@ -10,7 +10,12 @@ export default class TelegramLink extends Component {
         };
 
         return (
-            <a href={link} target="_blank" className="telegram-link" style={bgStyle}></a>
+            <a
+                href={link}
+                target='_blank'
+                className='telegram-link'
+                style={bgStyle}
+            />
         );
     }
 }

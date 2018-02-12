@@ -6,12 +6,12 @@ class TagList extends Component {
         const items = this.props.items || [];
 
         return (
-            <div className="taglist">
-                { items.map(
-                    (item, index) =>
-                        <span className="tag" key={index}>{item}</span>
-                    )
-                }
+            <div className='taglist'>
+                {items.map((item, index) => (
+                    <span className='tag' key={index}>
+                        {item}
+                    </span>
+                ))}
             </div>
         );
     }

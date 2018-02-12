@@ -20,7 +20,7 @@ class Achievements extends Component {
 					header={ items[type].header }
 					img={ items[type].img }
 					last={ cardAttrs[type].last } />
-		 	);
+            );
         }
     }
 
@@ -28,16 +28,16 @@ class Achievements extends Component {
         const achievementItems = this.props.achievementItems || {};
 
         return (
-			<section className="achievements">
+			<section className='achievements'>
 					<h2>Последние достижения</h2>
-					<div className="achievements__content row">
-						<div className="col-md-6">
+					<div className='achievements__content row'>
+						<div className='col-md-6'>
 							{this._getCard(achievementItems, 'work')}
 						</div>
-						<div className="col-md-3">
+						<div className='col-md-3'>
 							{this._getCard(achievementItems, 'draw')}
 						</div>
-						<div className="col-md-3">
+						<div className='col-md-3'>
 							{this._getCard(achievementItems, 'read')}
 							{this._getCard(achievementItems, 'cook')}
 						</div>
