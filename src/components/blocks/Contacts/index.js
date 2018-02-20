@@ -148,7 +148,7 @@ export default class Contacts extends Component {
         fetch('https://my-firebase-server.firebaseapp.com/captchacheck', {
             method: 'POST',
             headers: {
-                Accept: 'application/json, text/plain, */*',
+                'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ captcha: value })

@@ -6,14 +6,14 @@ export default class Contacts extends Component {
     render() {
         const size = this.props.size || 'medium';
         const dynCardClass = classnames({
-            card: true,
+            'card': true,
             'card--large': size === 'large',
             'card--medium': size === 'medium',
             'card--small': size === 'small',
             'is-last': !!this.props.last
         });
         const dynImgClass = classnames({
-            card__img: true,
+            'card__img': true,
             'is-empty': this.props.img == null
         });
         const imgUrl = this.props.img ? this.props.img : '';
