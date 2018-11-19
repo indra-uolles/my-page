@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FooterTag = styled.footer`
+const StyledFooter = styled.footer`
     background: #d6c9b8;
     padding: 20px;
     margin: 0;
@@ -11,8 +11,8 @@ const FooterTag = styled.footer`
 
 export default function Footer() {
     return (
-        <FooterTag>
+        <StyledFooter>
             <a href='#'>©&nbsp;2017 Душкина Наталья</a>
-        </FooterTag>
+        </StyledFooter>
     );
 }
