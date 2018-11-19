@@ -4,16 +4,19 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "react": "^15.5.4",
+    "react": "^16.6.3",
     "react-captcha": "^2.0.9",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.6.3",
     "react-icons": "^2.2.3",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "react-sidebar": "^2.3.2"
+    "react-sidebar": "^2.3.2",
+    "styled-components": "^4.1.1",
+    "styled-grid-system-component": "^2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-plugin-styled-components": "^1.8.0",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^7.5.1",
     "gh-pages": "^1.1.0",

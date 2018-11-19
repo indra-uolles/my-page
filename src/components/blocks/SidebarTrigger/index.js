@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import IconMenu from 'react-icons/lib/md/menu';
+//import IconMenu from 'react-icons/lib/md/menu';
 
 class SidebarTrigger extends Component {
     render() {
@@ -10,13 +10,13 @@ class SidebarTrigger extends Component {
                 className='icon-hamburger'
                 onClick={this.props.onSidebarTrigger}
             >
-                <IconMenu
+                {/* <IconMenu
                     style={{
                         width: '40px',
                         height: '40px',
                         backgroundColor: '#fff'
                     }}
-                />
+                /> */}
             </div>
         );
     }

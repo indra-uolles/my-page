@@ -10,7 +10,7 @@ import {
 import './reset.css';
 import './index.css';
 
-import IconClose from 'react-icons/lib/md/close';
+//import IconClose from 'react-icons/lib/md/close';
 import Sidebar from 'react-sidebar';
 import PATHS from './lib/paths';
 
@@ -58,7 +58,7 @@ class Main extends React.Component {
         var sidebarContent =
             <div>
                 <div className="sidebar__close" onClick={ this.onSidebarClose.bind(this) }>
-                    <IconClose style={{ width: '40px', height: '40px', color: '#fff' }} />
+                    {/* <IconClose style={{ width: '40px', height: '40px', color: '#fff' }} /> */}
                 </div>
                 <MainMenu mainMenuItems={PATHS}/>
             </div>;

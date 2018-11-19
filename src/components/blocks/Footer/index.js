@@ -1,10 +1,18 @@
 import React from 'react';
-import './style.css';
+import styled from 'styled-components';
+
+const FooterTag = styled.footer`
+    background: #d6c9b8;
+    padding: 20px;
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+`;
 
 export default function Footer() {
     return (
-        <footer className='footer'>
+        <FooterTag>
             <a href='#'>©&nbsp;2017 Душкина Наталья</a>
-        </footer>
+        </FooterTag>
     );
 }
