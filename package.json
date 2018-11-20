@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "html-reporter": "^2.23.0",
     "react": "^16.6.3",
     "react-captcha": "^2.0.9",
     "react-dom": "^16.6.3",
